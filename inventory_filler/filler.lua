@@ -35,7 +35,7 @@ end
 MEBridge=peripheral.find("meBridge")
 InventoryManager=peripheral.find("inventoryManager")
 print("ME Filler Loaded!\nFills or drains items in hotbar from/to ME network automatically.\nKeeping "..KeepCount.."~"..DrainCount.." For every stack.")
-while true do
+function Tick()
     local items=InventoryManager.getItems()
     for i=0,8 do
         local item=items[i]
@@ -46,5 +46,8 @@ while true do
             FillItem(item,i)
         end
     end
+end
+while true do
+    xpcall(Tick,print)
     sleep(1)
 end
